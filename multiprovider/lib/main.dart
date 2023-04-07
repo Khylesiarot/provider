@@ -25,25 +25,39 @@ class Minutes {
   Minutes() : value = now();
 }
 
-Stream<String> newStream(Duration duration) =>
-    Stream.periodic(duration, (_) => now());
-
-
-
-
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Home Page')),
+      body: MultiProvider(providers: [
+        StreamProvider.value(
+            value: Stream<Seconds>.periodic(
+                const Duration(seconds: 1), (_) => Seconds()),
+            initialData: Seconds()),
+
+            StreamProvider.value(
+            value: Stream<Minutes>.periodic(
+                const Duration(minutes: 1), (_) => Minutes()),
+            initialData: Minutes()),
+      ],
+
+      child: Column(children: [Row(
+        children: const [
+          SecondsWidget(),
+          MinutesWidget()
+        ],
+      )]),
+      
+      
+      ),
     );
   }
 }
 
-
 class SecondsWidget extends StatelessWidget {
-  const SecondsWidget({Key? key}): super(key: key);
+  const SecondsWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,14 +66,14 @@ class SecondsWidget extends StatelessWidget {
       child: Container(
         color: Colors.yellow,
         height: 100,
-      child: Text(seconds.value),
+        child: Text(seconds.value),
       ),
     );
   }
 }
 
 class MinutesWidget extends StatelessWidget {
-  const MinutesWidget({Key? key}): super(key: key);
+  const MinutesWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +82,7 @@ class MinutesWidget extends StatelessWidget {
       child: Container(
         color: Colors.blue,
         height: 100,
-      child: Text(minutes.value),
+        child: Text(minutes.value),
       ),
     );
   }
