@@ -31,26 +31,22 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Home Page')),
-      body: MultiProvider(providers: [
-        StreamProvider.value(
-            value: Stream<Seconds>.periodic(
-                const Duration(seconds: 1), (_) => Seconds()),
-            initialData: Seconds()),
-
-            StreamProvider.value(
-            value: Stream<Minutes>.periodic(
-                const Duration(minutes: 1), (_) => Minutes()),
-            initialData: Minutes()),
-      ],
-
-      child: Column(children: [Row(
-        children: const [
-          SecondsWidget(),
-          MinutesWidget()
+      body: MultiProvider(
+        providers: [
+          StreamProvider.value(
+              value: Stream<Seconds>.periodic(
+                  const Duration(seconds: 1), (_) => Seconds()),
+              initialData: Seconds()),
+          StreamProvider.value(
+              value: Stream<Minutes>.periodic(
+                  const Duration(minutes: 1), (_) => Minutes()),
+              initialData: Minutes()),
         ],
-      )]),
-      
-      
+        child: Column(children: [
+          Row(
+            children: const [SecondsWidget(), MinutesWidget()],
+          )
+        ]),
       ),
     );
   }
