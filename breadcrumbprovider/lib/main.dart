@@ -145,9 +145,13 @@ class _NewBreadCrumbWidgetState extends State<NewBreadCrumbWidget> {
         TextButton(
             onPressed: () {
               final text = _controller.text;
-              final breadCrumb = BreadCrumb(isActive: false, name: text);
-              context.read()<BreadCrumbProvider>().add(breadCrumb);
-              Navigator.of(context).pop();
+              if (text.isNotEmpty) {
+                final breadCrumb = BreadCrumb(isActive: false, name: text);
+                context.read<BreadCrumbProvider>().add(
+                      breadCrumb,
+                    );
+                Navigator.of(context).pop();
+              }
             },
             child: const Text('Add'))
       ]),
