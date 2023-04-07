@@ -5,9 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 void main() {
-  runApp(
-    ChangeNotifierProvider(
-      create: (_) => BreadCrumbProvider(),
+  runApp(ChangeNotifierProvider(
+    create: (_) => BreadCrumbProvider(),
     child: MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
@@ -15,6 +14,7 @@ void main() {
         primarySwatch: Colors.blue,
       ),
       home: const HomePage(),
+      routes: {'/new': (context) => const Material()},
     ),
   ));
 }
@@ -86,6 +86,18 @@ class HomePage extends StatelessWidget {
         title: const Text('Home Page'),
         centerTitle: true,
       ),
+      body: Column(children: [
+        TextButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed('/new');
+            },
+            child: const Text('Add new breadcrumb')),
+        TextButton(
+          onPressed: () {
+           context.read<BreadCrumbProvider>().reset();
+        },
+         child: const Text('Reset')),
+      ]),
     );
   }
 }
