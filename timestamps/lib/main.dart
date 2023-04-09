@@ -71,7 +71,7 @@ class ObjectProvider extends ChangeNotifier {
     });
 
     _expensiveObjectStreamSubs = Stream.periodic(
-      const Duration(minutes: 1),
+      const Duration(seconds: 1),
     ).listen((_) {
       _expensiveObject = ExpensiveObject();
       notifyListeners();
