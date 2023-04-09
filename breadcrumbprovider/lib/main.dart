@@ -8,7 +8,7 @@ void main() {
   runApp(ChangeNotifierProvider(
     create: (_) => BreadCrumbProvider(),
     child: MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Bread Crumb',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,

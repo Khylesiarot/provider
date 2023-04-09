@@ -7,7 +7,7 @@ void main() {
   runApp(ChangeNotifierProvider(
     create: (_) => ObjectProvider(),
     child: MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Timestamps',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -71,7 +71,7 @@ class ObjectProvider extends ChangeNotifier {
     });
 
     _expensiveObjectStreamSubs = Stream.periodic(
-      const Duration(seconds: 1),
+      const Duration(minutes: 1),
     ).listen((_) {
       _expensiveObject = ExpensiveObject();
       notifyListeners();

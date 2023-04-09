@@ -3,7 +3,8 @@ import 'package:provider/provider.dart';
 
 void main() {
   runApp(MaterialApp(
-    title: 'Flutter Demo',
+    title: 'MultiProvider',
+    debugShowCheckedModeBanner: false,
     theme: ThemeData(
       primarySwatch: Colors.blue,
     ),
@@ -39,7 +40,7 @@ class HomePage extends StatelessWidget {
               initialData: Seconds()),
           StreamProvider.value(
               value: Stream<Minutes>.periodic(
-                  const Duration(minutes: 1), (_) => Minutes()),
+                  const Duration(seconds: 5), (_) => Minutes()),
               initialData: Minutes()),
         ],
         child: Column(children: [
